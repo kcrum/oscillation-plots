@@ -1,0 +1,3 @@
+Simple neutrino oscillation plots can be made with vacuumOsc.py, for example the function wikiOscPlots will generate plots in the style of:
+http://en.wikipedia.org/wiki/Neutrino_oscillation#Three_neutrino_probabilities
+for a user-specified starting flavor. Parameters of the PMNS matrix and the mass-squared splittings are specified as global variables at the top of the file.
