@@ -21,22 +21,22 @@ def cubic_int2(x, pmin1, p0, p1, p2):
                     + (-pmin1 + 3*p0 - 3*p1 + p2)*xcb)
 
 # Assumes we know (x = -1, y = pmin1), (0, p0), (1, p1), and (2, p2)
-def testplot(pmin1, p0, p1, p2, xmin = -2, xmax = 3, npts = 100):
+def testplot(pmin2, pmin1, p0, p1, p2, xmin = -3, xmax = 3, npts = 350):
     x = np.linspace(xmin, xmax, npts)
-    y = cubic_int2(x, pmin1, p0, p1, p2)
-    y2 = cubic_int(x, pmin1, p0, p1, p2)
-    pts = [[-1,pmin1], [0,p0], [1,p1], [2,p2]]
-
+    y = cubic_int(x, pmin1, p0, p1, p2)
+    y2 = cubic_int(x, pmin2, pmin1, p0, p1)
+    pts = [[-2,pmin2], [-1,pmin1], [0,p0], [1,p1], [2,p2]]
     fig, ax = plt.subplots()
 
-    ax.plot(x, y, linewidth=2, color='b', ls='--')
-    ax.plot(x, y2, linewidth=3, color='y', linestyle='-.')
+    ax.plot(x, y, linewidth=2, color='b', ls='-')
+    ax.plot(x-1, y2, linewidth=2, color='purple', linestyle='--')
     # This trick is known as 'unpacking argument lists.'
-    ax.plot(*zip(*pts), marker='o', color='r')
+    ax.plot(*zip(*pts), marker='o', color='r', ls='')
+
     plt.axis([xmin, xmax,-2,10])
     plt.show()
 
 if __name__ == "__main__":
     #    print cubic_int2(0.5, 1, -2, 0, -2)
 
-    testplot(1,4,2,3)
+    testplot(1,4,2,6,3)
