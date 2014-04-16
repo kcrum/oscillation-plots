@@ -2,6 +2,8 @@ import sys
 import inspect # Use this if you want to print line numbers
 import operator # Used for dictionary sorting
 import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize
 
 # Standard Model parameters
 theta12 = np.arcsin(np.sqrt(0.306))
@@ -125,8 +127,6 @@ def vacuumOscProb(startflavor, endflavor, LoverE, anti = False,
 ##########################################################################
 # 'anti' bool is for antineutrinos    
 def testplot(startflavor, endflavor, anti = False, lowerlim=10, upperlim=9e4):
-    import matplotlib.pyplot as plt
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)/10)
 
     ynorm = vacuumOscProb(startflavor, endflavor, x, anti)    
@@ -168,8 +168,6 @@ def nuVSantinu_prob(startflavor, endflavor, dcp = deltacp, lowerlim=10,
     neutrinos with deltaCP = 0. Optionally specify mass hierarchy with
     'invhier' boolean (default hierarchy: normal).
     """
-    import matplotlib.pyplot as plt
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)/10)
     pmns = PMNSmatrix(theta13, theta12, theta23, dcp)
 
@@ -214,8 +212,6 @@ def normVSinvHier_prob(startflavor, endflavor, lowerlim=10, upperlim=9e4,
     normal and inverted hierarchies. If 'anti' is true, antineutrinos are
     generated.
     """
-    import matplotlib.pyplot as plt
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)*100.)
     pmns = PMNSmatrix()
 
@@ -249,9 +245,6 @@ def normVSinvHier_prob(startflavor, endflavor, lowerlim=10, upperlim=9e4,
 
 ##########################################################################     
 def nueTwoScales(lowerlim=100, upperlim=9e4):
-    import matplotlib.pyplot as plt
-    from scipy import optimize
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)/10)
 
     ynorm = vacuumOscProb('e','e',x)    
@@ -308,8 +301,6 @@ def wikiOscPlots(startflavor, lowerlim=-100, upperlim=3.9e4, anti = False,
     If 'anti' is true, antineutrinos are used. If 'invhier' is true, the 
     plots are generated using the inverted mass hierarchy.
     """
-    import matplotlib.pyplot as plt
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)/10)
     pmns = PMNSmatrix(wikitheta13, wikitheta12, wikitheta23, deltacp)
 
@@ -346,9 +337,6 @@ def DCdisapp(lowerlim=100, upperlim=9e4):
     Plot the region of L/E for which Double Chooz can see 
     anti-electron neutrino disappearance.
     """
-    import matplotlib.pyplot as plt
-    from scipy import optimize
-
     fig = plt.figure(figsize=(12,6))
     ax = fig.add_subplot(1,1,1)
 
@@ -383,9 +371,6 @@ def DCdisapp(lowerlim=100, upperlim=9e4):
 
 ##########################################################################     
 def DCdisappFull(lowerlim=100, upperlim=9e4):
-    import matplotlib.pyplot as plt
-    from scipy import optimize
-
     x = np.linspace(lowerlim, upperlim, (upperlim-lowerlim)/10)
 
     y = vacuumOscProb('e','e',x)    
